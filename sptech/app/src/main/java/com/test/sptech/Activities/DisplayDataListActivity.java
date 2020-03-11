@@ -1,4 +1,4 @@
-package com.test.sptech.DisplayDataList;
+package com.test.sptech.Activities;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;

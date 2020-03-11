@@ -14,6 +14,8 @@
     <dimen name="text_size_small">14sp</dimen>
     <dimen name="text_size_normal">16sp</dimen>
     <dimen name="text_size_big">18sp</dimen>
+    <dimen name="text_size_xbig">22sp</dimen>
+    <dimen name="text_size_xxbig">28sp</dimen>
 
     <!-- padding/margin measurement -->
     <dimen name="extra_large_width">32dp</dimen>

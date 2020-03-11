@@ -1,6 +1,9 @@
 package com.test.sptech.Models;
 
+import com.test.sptech.Constant;
+
 import java.math.BigDecimal;
+import java.util.List;
 
 public class MobileDataUsageYearly {
 
@@ -8,6 +11,8 @@ public class MobileDataUsageYearly {
     private BigDecimal volumeOfMobileData;
     private String yearStr;
     private String volumeOfMobileDataStr;
+    private List<QuarterDataVol> quarterList;
+    //private boolean decreaseInDataVol;
 
     public MobileDataUsageYearly(BigDecimal volumeOfMobileData, String yearStr) {
         this.volumeOfMobileData = volumeOfMobileData;
@@ -39,4 +44,25 @@ public class MobileDataUsageYearly {
         return String.valueOf(volumeOfMobileData);
     }
 
+    public List<QuarterDataVol> getQuarterList() {
+        return quarterList;
+    }
+
+    public void setQuarterList(List<QuarterDataVol> quarterList) {
+        this.quarterList = quarterList;
+    }
+
+    public boolean hasDecreaseInDataVol() {
+
+        BigDecimal prevVolData = BigDecimal.ZERO;
+        for(QuarterDataVol q: quarterList){
+            if(prevVolData.equals(BigDecimal.ZERO)){
+                prevVolData = q.getVolumeOfMobileData();
+            }else if(prevVolData.compareTo(q.getVolumeOfMobileData()) == Constant.IS_GREATER_THAN){
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

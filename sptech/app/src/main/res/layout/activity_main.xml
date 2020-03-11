@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".Activities.MainActivity"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingStart="@dimen/extra_large_width"
     android:paddingEnd="@dimen/extra_large_width"

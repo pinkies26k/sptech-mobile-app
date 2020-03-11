@@ -3,6 +3,7 @@ package com.test.sptech.Adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,18 +14,14 @@ import com.test.sptech.R;
 
 import java.util.List;
 
-public class ItemDataAdapter extends RecyclerView.Adapter<ItemDataAdapter.ViewHolder>{
+public class ItemDataWIthImageAdapter extends RecyclerView.Adapter<ItemDataWIthImageAdapter.ViewHolder>{
 
     private List<MobileDataUsageYearly> yearlyList;
-
-    public ItemDataAdapter(List<MobileDataUsageYearly> yearlyList) {
-        this.yearlyList = yearlyList;
-    }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_yearly_data_usage, parent, false));
+        return new ItemDataWIthImageAdapter.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_with_clickable_image, parent, false));
     }
 
     @Override
@@ -32,7 +29,10 @@ public class ItemDataAdapter extends RecyclerView.Adapter<ItemDataAdapter.ViewHo
         final MobileDataUsageYearly item = yearlyList.get(position);
 
         holder.tvYear.setText(item.getYearStr());
-        holder.tvDataUsage.setText(item.getVolumeOfMobileDataStr());
+
+        // set background to yellow if any quarter in a year demonstrates a decrease in volume data
+
+        // set the description to be visible
     }
 
     @Override
@@ -42,14 +42,16 @@ public class ItemDataAdapter extends RecyclerView.Adapter<ItemDataAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tvYear, tvDataUsage;
+        TextView tvYear, tvDescription;
+        RelativeLayout rlImageBackground;
 
 
         private ViewHolder(View itemView) {
             super(itemView);
 
             tvYear = itemView.findViewById(R.id.tvYear);
-            tvDataUsage = itemView.findViewById(R.id.tvDataUsage);
+            tvDescription = itemView.findViewById(R.id.tvDescription);
+            rlImageBackground = itemView.findViewById(R.id.rlImageBackground);
 
         }
     }
