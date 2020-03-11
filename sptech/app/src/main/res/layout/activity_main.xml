@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingStart="@dimen/extra_large_width"
+    android:paddingEnd="@dimen/extra_large_width"
+    >
+
+    <Button
+        android:id="@+id/btnGotoDataList"
+        style="@style/MainButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Display a list of data"
+        />
+
+    <Button
+        android:id="@+id/btnGotoClickableImage"
+        style="@style/MainButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGotoDataList"
+        android:text="Display a clickable image"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

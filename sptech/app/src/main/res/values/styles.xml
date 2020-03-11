@@ -1,0 +1,37 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="MainButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="GeneralTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+    </style>
+
+    <style name="TextViewLabel" parent="GeneralTextView">
+        <item name="android:layout_marginTop">@dimen/extra_small_width</item>
+    </style>
+
+    <style name="TextViewLabelColon" parent="GeneralTextView">
+        <item name="android:layout_width">@dimen/regular_width</item>
+    </style>
+
+    <style name="ClTextViewInput" parent="GeneralTextView">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_marginEnd">@dimen/activity_horizontal_margin</item>
+    </style>
+
+</resources>

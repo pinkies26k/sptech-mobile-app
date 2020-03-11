@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/small_width">
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrierDataLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="tvYearLabel, tvDataUsageLabel"
+        />
+
+    <!-- Year -->
+    <TextView
+        android:id="@+id/tvYearLabel"
+        style="@style/TextViewLabel"
+        android:text="Year"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvYearLabelColon"
+        style="@style/TextViewLabelColon"
+        android:text=":"
+        app:layout_constraintStart_toEndOf="@+id/barrierDataLabel"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvYearLabel"
+        />
+
+    <TextView
+        android:id="@+id/tvYear"
+        style="@style/ClTextViewInput"
+        app:layout_constraintStart_toEndOf="@+id/tvYearLabelColon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvYearLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="0dp"
+        android:layout_marginTop="@dimen/small_width"
+        android:paddingBottom="@dimen/small_width"
+        tools:text="2004"/>
+
+    <!-- Data Usage -->
+    <TextView
+        android:id="@+id/tvDataUsageLabel"
+        style="@style/TextViewLabel"
+        android:text="Data Usage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvYear" />
+
+    <TextView
+        android:id="@+id/tvDataUsageLabelColon"
+        style="@style/TextViewLabelColon"
+        android:text=":"
+        app:layout_constraintStart_toEndOf="@+id/barrierDataLabel"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvDataUsageLabel"
+        />
+
+    <TextView
+        android:id="@+id/tvDataUsage"
+        style="@style/ClTextViewInput"
+        app:layout_constraintStart_toEndOf="@+id/tvDataUsageLabelColon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvDataUsageLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="0dp"
+        android:layout_marginTop="@dimen/small_width"
+        android:paddingBottom="@dimen/small_width"
+        tools:text="	0.000384"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
