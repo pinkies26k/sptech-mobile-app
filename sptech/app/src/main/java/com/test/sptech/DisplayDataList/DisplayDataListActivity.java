@@ -1,13 +1,15 @@
 package com.test.sptech.DisplayDataList;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.ProgressDialog;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.test.sptech.Adapter.ItemDataAdapter;
 import com.test.sptech.Constant;
 import com.test.sptech.Models.MobileDataUsageYearly;
 import com.test.sptech.R;
@@ -19,13 +21,7 @@ import com.test.sptech.Utilities.Remote.WsResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +31,7 @@ public class DisplayDataListActivity extends AppCompatActivity implements WebSer
     private RecyclerView rvYearlyList;
     private ProgressDialog pd;
     private List<MobileDataUsageYearly> yearlyList;
+    private ItemDataAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +71,11 @@ public class DisplayDataListActivity extends AppCompatActivity implements WebSer
 
     private void setupViews(){
 
+        mAdapter = new ItemDataAdapter(yearlyList);
+
+        rvYearlyList.setAdapter(mAdapter);
+        rvYearlyList.setLayoutManager(new LinearLayoutManager(rvYearlyList.getContext()));
+        rvYearlyList.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
     }
 
     @Override
@@ -90,28 +92,47 @@ public class DisplayDataListActivity extends AppCompatActivity implements WebSer
 
                 JSONObject json = new JSONObject(output);
                 JSONObject jsonResponse = json.getJSONObject("result");
-                String resource_id = jsonResponse.getString("resource_id");
 
                 JSONArray recordsArr = jsonResponse.getJSONArray("records");
 
-                String currentYear = "", storedYear = "";
+                String storedYear = "";
+                BigDecimal storedDataVol = BigDecimal.ZERO;
+
+
                 for(int i = 0; i < recordsArr.length(); i++){
                     JSONObject record = recordsArr.getJSONObject(i);
                     String mobileDataVol = record.getString(Constant.JSON_VOLUME_OF_MOBILE_DATA);
                     String quarter = record.getString(Constant.JSON_QUARTER);
 
-                    Log.d(TAG, "quarter: "+quarter);
-                    Log.d(TAG, "mobileDataVol: "+mobileDataVol);
+//                    Log.d(TAG, "quarter: "+quarter);
+//                    Log.d(TAG, "mobileDataVol: "+mobileDataVol);
 
                     String[] quarterArr = quarter.split("-");
                     if(storedYear.isEmpty()){
-                        yearlyList.add(new MobileDataUsageYearly(mobileDataVol, quarterArr[0]));
-                        storedYear = quarterArr[0];
+
+                        if(recordsArr.length() == 1){
+                            yearlyList.add(new MobileDataUsageYearly(new BigDecimal(mobileDataVol), quarterArr[0]));
+                        }else{
+                            storedDataVol = new BigDecimal(mobileDataVol);
+                            storedYear = quarterArr[0];
+                        }
                     }else if(quarterArr[0].equals(storedYear)){
+                        storedDataVol = storedDataVol.add(new BigDecimal(mobileDataVol));
+                    }else{
+
+                        yearlyList.add(new MobileDataUsageYearly(storedDataVol, storedYear));
+
+                        if(i == recordsArr.length() - 1){
+                            yearlyList.add(new MobileDataUsageYearly(new BigDecimal(mobileDataVol), quarterArr[0]));
+                        }else{
+                            storedDataVol = new BigDecimal(mobileDataVol);
+                            storedYear = quarterArr[0];
+                        }
 
                     }
                 }
 
+                mAdapter.notifyDataSetChanged();
 
             }
         }catch(Exception e){

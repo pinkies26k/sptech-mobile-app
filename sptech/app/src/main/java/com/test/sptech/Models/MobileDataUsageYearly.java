@@ -1,14 +1,16 @@
 package com.test.sptech.Models;
 
+import java.math.BigDecimal;
+
 public class MobileDataUsageYearly {
 
     private int year;
-    private float volumeOfMobileData;
+    private BigDecimal volumeOfMobileData;
     private String yearStr;
     private String volumeOfMobileDataStr;
 
-    public MobileDataUsageYearly(String volumeOfMobileData, String yearStr) {
-        this.volumeOfMobileData = Float.parseFloat(volumeOfMobileData);
+    public MobileDataUsageYearly(BigDecimal volumeOfMobileData, String yearStr) {
+        this.volumeOfMobileData = volumeOfMobileData;
         this.yearStr = yearStr;
     }
 
@@ -20,11 +22,11 @@ public class MobileDataUsageYearly {
         this.year = year;
     }
 
-    public float getVolumeOfMobileData() {
+    public BigDecimal getVolumeOfMobileData() {
         return volumeOfMobileData;
     }
 
-    public void setVolumeOfMobileData(float volumeOfMobileData) {
+    public void setVolumeOfMobileData(BigDecimal volumeOfMobileData) {
         this.volumeOfMobileData = volumeOfMobileData;
     }
 

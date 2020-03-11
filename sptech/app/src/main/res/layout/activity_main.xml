@@ -10,13 +10,35 @@
     android:paddingEnd="@dimen/extra_large_width"
     >
 
+    <TextView
+        android:id="@+id/tvTaskOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Task ONE"
+        android:textSize="@dimen/text_size_big"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
     <Button
         android:id="@+id/btnGotoDataList"
         style="@style/MainButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTaskOne"
         android:text="Display a list of data"
+        />
+
+    <TextView
+        android:id="@+id/tvTaskTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Task TWO"
+        android:textSize="@dimen/text_size_big"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGotoDataList"
+        android:layout_marginTop="@dimen/large_width"
         />
 
     <Button
@@ -24,9 +46,8 @@
         style="@style/MainButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGotoDataList"
+        app:layout_constraintTop_toBottomOf="@+id/tvTaskTwo"
         android:text="Display a clickable image"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
