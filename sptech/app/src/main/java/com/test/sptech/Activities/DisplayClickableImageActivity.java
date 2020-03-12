@@ -10,10 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.test.sptech.Adapter.ItemDataWIthImageAdapter;
+import com.test.sptech.Adapter.QuarterDetailsDialogAdapter;
 import com.test.sptech.Constant;
 import com.test.sptech.Models.MobileDataUsageYearly;
 import com.test.sptech.Models.QuarterDataVol;
 import com.test.sptech.R;
+import com.test.sptech.Utilities.DialogQuarterDetails;
 import com.test.sptech.Utilities.GeneralUtil;
 import com.test.sptech.Utilities.Remote.WebServices;
 import com.test.sptech.Utilities.Remote.WsRequest;
@@ -34,6 +36,7 @@ public class DisplayClickableImageActivity extends AppCompatActivity
     private ProgressDialog pd;
     private List<MobileDataUsageYearly> yearlyList;
     private ItemDataWIthImageAdapter mAdapter;
+    private DialogQuarterDetails mDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +122,9 @@ public class DisplayClickableImageActivity extends AppCompatActivity
                         }
                     }else if(storedYear.equals(yearStr)){
                         quarterList.add(new QuarterDataVol(quarterStr, mobileDataVol));
+
                     }else{
+
                         finaliseYearlyList(mItem, quarterList);
 
                         if(i == recordsArr.length() - 1){
@@ -130,6 +135,8 @@ public class DisplayClickableImageActivity extends AppCompatActivity
                         }else{
                             mItem = new MobileDataUsageYearly(yearStr);
                             quarterList = new ArrayList<>();
+                            quarterList.add(new QuarterDataVol(quarterStr, mobileDataVol));
+
                             storedYear = yearStr;
                         }
                     }
@@ -176,6 +183,10 @@ public class DisplayClickableImageActivity extends AppCompatActivity
 
     @Override
     public void onDisplayItemSelected(List<QuarterDataVol> quarterDataVolList) {
-        Log.d(TAG, "quarterDataVolList size: "+ quarterDataVolList.size());
+
+        if(DialogQuarterDetails.checkNotShowing(mDialog) && !quarterDataVolList.isEmpty()){
+            mDialog = new DialogQuarterDetails();
+            mDialog.showDialog(this, new QuarterDetailsDialogAdapter(quarterDataVolList));
+        }
     }
 }

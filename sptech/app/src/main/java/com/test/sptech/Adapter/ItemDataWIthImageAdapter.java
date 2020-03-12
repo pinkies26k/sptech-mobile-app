@@ -53,6 +53,7 @@ public class ItemDataWIthImageAdapter extends RecyclerView.Adapter<ItemDataWIthI
             });
 
             holder.rlImageBackground.setBackgroundColor(ContextCompat.getColor(mContext, R.color.yellow));
+            holder.ivArrow.setImageResource(R.drawable.ic_double_arrows);
 
             // set the description to be visible
             holder.tvDescription.setVisibility(View.VISIBLE);
@@ -62,6 +63,7 @@ public class ItemDataWIthImageAdapter extends RecyclerView.Adapter<ItemDataWIthI
         }else{
             holder.rlImageBackground.setOnClickListener(null);
             holder.rlImageBackground.setBackgroundColor(Color.parseColor("#80000000"));
+            holder.ivArrow.setImageResource(R.drawable.ic_green_arrow);
             holder.tvDescription.setVisibility(View.GONE);
         }
 
