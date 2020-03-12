@@ -6,14 +6,26 @@ public class QuarterDataVol {
 
     private BigDecimal volumeOfMobileData;
     private String volumeOfMobileDataStr;
-    private int quarter;
+    private String quarter;
     private boolean decreaseInDataVol;
 
-    public int getQuarter() {
+    public QuarterDataVol(String quarter, String volumeOfMobileData) {
+        this.quarter = quarter;
+        this.volumeOfMobileData = new BigDecimal(volumeOfMobileData);
+        decreaseInDataVol = false;
+    }
+
+//    public QuarterDataVol(String quarter, String volumeOfMobileData, boolean decreaseInDataVol) {
+//        this.quarter = quarter;
+//        this.volumeOfMobileDataStr = volumeOfMobileData;
+//        this.decreaseInDataVol = decreaseInDataVol;
+//    }
+
+    public String getQuarter() {
         return quarter;
     }
 
-    public void setQuarter(int quarter) {
+    public void setQuarter(String quarter) {
         this.quarter = quarter;
     }
 

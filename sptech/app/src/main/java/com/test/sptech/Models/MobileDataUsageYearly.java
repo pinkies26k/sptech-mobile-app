@@ -1,7 +1,5 @@
 package com.test.sptech.Models;
 
-import com.test.sptech.Constant;
-
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -12,7 +10,21 @@ public class MobileDataUsageYearly {
     private String yearStr;
     private String volumeOfMobileDataStr;
     private List<QuarterDataVol> quarterList;
-    //private boolean decreaseInDataVol;
+    private boolean decreaseInDataVol;
+    private String affectedQuarters;
+
+    public String getAffectedQuarters() {
+        if(affectedQuarters == null) return "";
+        else return affectedQuarters;
+    }
+
+    public void setAffectedQuarters(String affectedQuarters) {
+        this.affectedQuarters = affectedQuarters;
+    }
+
+    public MobileDataUsageYearly(String yearStr) {
+        this.yearStr = yearStr;
+    }
 
     public MobileDataUsageYearly(BigDecimal volumeOfMobileData, String yearStr) {
         this.volumeOfMobileData = volumeOfMobileData;
@@ -53,16 +65,26 @@ public class MobileDataUsageYearly {
     }
 
     public boolean hasDecreaseInDataVol() {
-
-        BigDecimal prevVolData = BigDecimal.ZERO;
-        for(QuarterDataVol q: quarterList){
-            if(prevVolData.equals(BigDecimal.ZERO)){
-                prevVolData = q.getVolumeOfMobileData();
-            }else if(prevVolData.compareTo(q.getVolumeOfMobileData()) == Constant.IS_GREATER_THAN){
-                return true;
-            }
-        }
-
-        return false;
+        return decreaseInDataVol;
     }
+
+    public void setDecreaseInDataVol(boolean decreaseInDataVol) {
+        this.decreaseInDataVol = decreaseInDataVol;
+    }
+
+//        public boolean hasDecreaseInDataVol() {
+//
+//        BigDecimal prevVolData = BigDecimal.ZERO;
+//        for(QuarterDataVol q: quarterList){
+//            if(prevVolData.equals(BigDecimal.ZERO)){
+//                prevVolData = q.getVolumeOfMobileData();
+//            }else if(prevVolData.compareTo(q.getVolumeOfMobileData()) == Constant.IS_GREATER_THAN){
+//                return true;
+//            }
+//        }
+//
+//        return false;
+//    }
+
+
 }

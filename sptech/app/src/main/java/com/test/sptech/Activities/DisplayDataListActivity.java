@@ -50,7 +50,6 @@ public class DisplayDataListActivity extends AppCompatActivity implements WebSer
     }
 
     private void getData(){
-//        new JsonTask().execute("https://data.gov.sg/api/action/datastore_search?resource_id=a807b7ab-6cad-4aa6-87d0-e283a7353a0f");
 
         yearlyList = new ArrayList<>();
         initiateWebService();
@@ -59,7 +58,7 @@ public class DisplayDataListActivity extends AppCompatActivity implements WebSer
     private void initiateWebService(){
 
         // initiate progress dialog
-        pd = new ProgressDialog(DisplayDataListActivity.this);
+        pd = new ProgressDialog(this);
         pd.setMessage("Please wait");
         pd.setCancelable(false);
         pd.show();
