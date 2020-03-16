@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">sptech</string>
     <string name="description">*Decrease in volume data in %1$s. Please click the image for more info.</string>
+    <string name="connection_error">Connection error. Please try again.</string>
 </resources>

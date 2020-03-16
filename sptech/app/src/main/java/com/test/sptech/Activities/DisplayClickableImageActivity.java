@@ -170,6 +170,9 @@ public class DisplayClickableImageActivity extends AppCompatActivity
 
                 mAdapter.notifyDataSetChanged();
 
+            }else{
+
+                GeneralUtil.makeToast(DisplayClickableImageActivity.this, getString(R.string.connection_error));
             }
         }catch(Exception e){
             Log.e(TAG, GeneralUtil.getStackTrace(e) );

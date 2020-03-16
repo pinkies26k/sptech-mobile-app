@@ -133,6 +133,8 @@ public class DisplayDataListActivity extends AppCompatActivity implements WebSer
 
                 mAdapter.notifyDataSetChanged();
 
+            }else{
+                GeneralUtil.makeToast(DisplayDataListActivity.this, getString(R.string.connection_error));
             }
         }catch(Exception e){
             Log.e(TAG, GeneralUtil.getStackTrace(e) );
